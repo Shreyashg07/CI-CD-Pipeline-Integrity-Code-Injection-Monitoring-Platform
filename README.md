@@ -1,62 +1,100 @@
-![Alt Text](Assets/banner.jpeg)
+<div align="center">
+
+<img src="./Assets/banner.jpeg" alt="CI/CD Pipeline Integrity & Code Injection Monitoring Tool" width="100%">
+
+<br>
 
 # 🚨 CI/CD Pipeline Integrity & Code Injection Monitoring Tool
 
-An **AI-powered DevSecOps security platform** designed to **detect malicious logic, code injections, and integrity violations inside CI/CD pipelines**—even when the code is **obfuscated, novel, or previously unseen**.
+### AI-powered DevSecOps security for your build pipelines
 
-This system **executes user-defined pipeline steps securely**, scans them **before and during execution**, and **blocks malicious pipelines in real time**.
+**Detect malicious logic, code injections and integrity violations inside CI/CD pipelines, even when the code is obfuscated, novel or previously unseen.**
+
+<br>
+
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![JWT](https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
+[![WebSockets](https://img.shields.io/badge/Live_Logs-WebSockets-F7931E?style=flat-square)](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+
+</div>
 
 ---
 
-## 🧠 Why This Project Exists
+# 🎯 About the Project
+
+This platform **executes user-defined pipeline steps securely**, scans them **before and during execution**, and **blocks malicious pipelines in real time**.
+
+---
+
+# 🧠 Why This Project Exists
 
 Modern CI/CD pipelines are a prime attack surface. Attackers inject:
+
 - Backdoors into build steps
 - Cryptominers in CI scripts
 - Reverse shells hidden in YAML
 - Supply-chain attacks during build time
 
-Traditional security tools **do not analyze pipeline execution logic**.  
-This project is built to solve exactly that.
+Traditional security tools **do not analyze pipeline execution logic**. This project is built to solve exactly that.
 
 ---
 
-## 🎯 Core Capabilities
+# ✨ Core Capabilities
 
 ### 🔍 Pipeline Integrity Monitoring
+
 - Detects unauthorized changes in pipeline configuration
 - Flags injected or tampered steps
-- Maintains execution history & audit logs
+- Maintains execution history and audit logs
 
-### ⚙️ Pipeline Steps Execution Engine
+### ⚙️ Pipeline Step Execution Engine
+
 - Executes **custom user-defined pipeline steps**
 - Supports **multi-step pipelines**
 - Streams logs in real time via WebSockets
 - Immediately stops execution on high-risk detection
 
 ### 🧬 AI-Based Malicious Logic Detection (PyGuard)
+
 - Semantic analysis using sentence embeddings
 - Detects **intent**, not just signatures
-- Resistant to obfuscation & zero-day logic
+- Resistant to obfuscation and zero-day logic
 
 ### 🚫 Pre-Deployment Blocking
-- Steps scanned **before execution**
-- Commands re-scanned **during runtime**
+
+- Steps are scanned **before execution**
+- Commands are re-scanned **during runtime**
 - Malicious pipelines are blocked instantly
 
 ### 📊 Real-Time Dashboard
+
 - Pipeline status (Running / Passed / Blocked)
 - Step-by-step execution visibility
-- Risk scores & severity classification
-- Live logs streaming
+- Risk scores and severity classification
+- Live log streaming
 
 ---
 
-## ⚙️ Pipeline Steps – Execution Flow
+# 🧪 Attacks Detected Inside Steps
 
-Each pipeline consists of **ordered execution steps**, defined by the user.
+- ✅ Obfuscated reverse shells
+- ✅ Base64 / hex encoded payloads
+- ✅ Cryptominers in build commands
+- ✅ `curl | bash` download attacks
+- ✅ Logic bombs in conditionals
+- ✅ Malicious Dockerfile instructions
+
+---
+
+# ⚙️ Pipeline Execution Flow
+
+Each pipeline consists of **ordered execution steps** defined by the user.
 
 ### 🧩 Example Pipeline Configuration
+
 ```json
 {
   "steps": [
@@ -67,33 +105,58 @@ Each pipeline consists of **ordered execution steps**, defined by the user.
 }
 ```
 
-#### 🧪 Attacks Detected Inside Steps
-
-✔ Obfuscated reverse shells
-✔ Base64 / hex encoded payloads
-✔ Cryptominers in build commands
-✔ curl | bash download attacks
-✔ Logic bombs in conditionals
-✔ Malicious Dockerfile instructions
-
-### 🏗️ High-Level Architecture
-```SCSS
-┌──────────────┐      JWT       ┌─────────────────────────┐
-│ React Frontend│ ───────────▶ │ Flask Backend             │
-│ (Dashboard)   │              │ - Auth (JWT)              │
-└──────────────┘              │ - Pipeline Engine          │
-                              │ - Step Executor            │
-                              │ - ML Scanner (PyGuard)     │
-                              │ - Rule Engine              │
-                              │ - WebSockets (Logs)        │
-                              └──────────────┬────────────┘
-                                             │
-                                             ▼
-                               Secure Step-by-Step Execution
+```text
+ ┌──────────┐    ┌────────────┐    ┌──────────────┐    ┌───────────┐
+ │ Define   │───▶│ Pre-scan   │───▶│ Execute step │───▶│ Runtime   │
+ │ steps    │    │ every step │    │ (isolated)   │    │ re-scan   │
+ └──────────┘    └─────┬──────┘    └──────────────┘    └─────┬─────┘
+                       │                                     │
+                 High risk?                            High risk?
+                       ▼                                     ▼
+                 ⛔ BLOCKED                             ⛔ BLOCKED
 ```
-### Project Structure
-```bash
+
+---
+
+# 🏗️ High-Level Architecture
+
+```text
+┌───────────────┐      JWT       ┌─────────────────────────────┐
+│ React Frontend│ ─────────────▶ │ Flask Backend               │
+│ (Dashboard)   │                │ - Auth (JWT)                │
+└───────────────┘                │ - Pipeline Engine           │
+                                 │ - Step Executor             │
+                                 │ - ML Scanner (PyGuard)      │
+                                 │ - Rule Engine               │
+                                 │ - WebSockets (Logs)         │
+                                 └──────────────┬──────────────┘
+                                                │
+                                                ▼
+                                  Secure Step-by-Step Execution
+```
+
+---
+
+# 🛠️ Technology Stack
+
+| Component | Technology |
+|---|---|
+| Backend | Python, Flask |
+| Authentication | JWT |
+| AI Detection | PyGuard (sentence embeddings) |
+| Live Logs | WebSockets |
+| Frontend | React (Vite) |
+| Reports | Generated in `backend/reports/` |
+
+---
+
+# 📁 Project Structure
+
+```text
 ai-cicd-security-tool/
+│
+├── Assets/
+│   └── banner.jpeg
 │
 ├── backend/
 │   ├── app.py
@@ -116,98 +179,125 @@ ai-cicd-security-tool/
 │
 └── README.md
 ```
-### Setup Enviroment 
-#### Backend
-🔹 Set up enviroment and database 
+
+---
+
+# ⚙️ Setup
+
+### 1. Backend
+
+Create and activate the virtual environment, then start the server.
+
 ```bash
 cd backend
 .venv/Scripts/Activate
 python app.py
 ```
-#### Frontend
-🔹 Set up node modules
+
+### 2. Frontend
+
+Install the Node modules.
+
 ```bash
 cd frontendx
 npm install
 ```
+
 ---
 
+# 🧠 Model Training & Dataset Expansion
 
-### 🧠 Model Training & Dataset Expansion
-🔹 Train Initial Embeddings
+### Train the initial embeddings
+
 ```bash
 cd backend/ci-integrity/
 python train_embeddings.py
 ```
-🔹 Expand Malicious Dataset
+
+### Expand the malicious dataset
+
 ```bash
 python expand_dataset.py
 ```
-### 🚀 Running the Project
-##### Method 1 :
-#### Backend
+
+---
+
+# 🚀 Running the Project
+
+### Terminal 1: Backend
+
 ```bash
 cd backend
 .venv/Scripts/Activate
 python app.py
 ```
-#### Frontend
+
+### Terminal 2: Frontend
+
 ```bash
-cd Frontendx
-npm run dev 
+cd frontendx
+npm run dev
 ```
 
-Visit the local host : 
-```bash
+Then open the dashboard:
+
+```text
 http://localhost:5173/
 ```
 
-### 📌 Pipeline Commands 
-##### STEP 1: START COMMAND
-```bash 
-echo === Step 1: Starting Secure Pipeline ===
-```
-##### STEP 2: REPO CLONING 
-```bash 
-git clone https://github.com/<username>/<repo>.git repo
-```
-##### STEP 3 : PYGAURD SCAN 
-```bash 
-python ci-integrity\pyguard_embedding.py repo --fail-on-high
-```
-##### STEP 4: VMX SCAN
-```bash 
-python cicd-integrity-monitor-main\scanner\scanner\cli.py repo
-```
-##### STEP 1: REMOVE REPO
-```bash 
-rmdir /s /q repo
-```
-##### STEP 1:END STAGE
-```bash 
-echo === ✅ All Scanners Completed ===
-```
+---
 
+# 📌 Sample Pipeline Commands
 
+A complete example pipeline that clones a repository, scans it with both scanners, and cleans up. These commands use Windows syntax.
 
-### 🔐 Security & Isolation
+| Step | Name | Command |
+|---|---|---|
+| 1 | Start | `echo === Step 1: Starting Secure Pipeline ===` |
+| 2 | Clone repository | `git clone https://github.com/<username>/<repo>.git repo` |
+| 3 | PyGuard scan | `python ci-integrity\pyguard_embedding.py repo --fail-on-high` |
+| 4 | VMX scan | `python cicd-integrity-monitor-main\scanner\scanner\cli.py repo` |
+| 5 | Remove repository | `rmdir /s /q repo` |
+| 6 | End | `echo === ✅ All Scanners Completed ===` |
 
-JWT-based authentication
-User-specific pipeline isolation
-Secure API enforcement
-No cross-user pipeline visibility
+> **Tip:** On Linux/macOS, use forward slashes in paths and `rm -rf repo` instead of `rmdir /s /q repo`.
 
-### 🧪 Why This Tool Is Different
-Security Tool	Limitation
-SAST	No execution logic
-SCA	Ignores CI/CD scripts
-Secrets Scan	Misses intent
-Policy Gates	Easily bypassed
-This Tool	Detects malicious steps
+---
 
-✅ Step-level security
-✅ Runtime blocking
-✅ AI-driven intent detection
+# 🔐 Security & Isolation
+
+- JWT-based authentication
+- User-specific pipeline isolation
+- Secure API enforcement
+- No cross-user pipeline visibility
+
+> **Important:** This tool executes user-defined commands. Run it in an isolated environment (VM or container) and never expose it publicly without additional hardening.
+
+---
+
+# 🧪 Why This Tool Is Different
+
+| Security Tool | Limitation |
+|---|---|
+| SAST | No execution logic |
+| SCA | Ignores CI/CD scripts |
+| Secrets Scanning | Misses intent |
+| Policy Gates | Easily bypassed |
+| **This Tool** | **Detects malicious steps** |
+
+- ✅ Step-level security
+- ✅ Runtime blocking
+- ✅ AI-driven intent detection
+
+---
+
+<div align="center">
+
+**Scan → Execute → Monitor → Block**
+
+### 🚨 CI/CD Pipeline Integrity & Code Injection Monitoring Tool
+
+</div>
 Every command is inspected
 Every build is verified before deployment
 
