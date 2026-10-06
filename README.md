@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./Assets/banner.jpeg" alt="CI/CD Pipeline Integrity & Code Injection Monitoring Tool" width="100%">
+<img src="./Vigilant Mavericks DevSecOps Banner.png" alt="CI/CD Pipeline Integrity & Code Injection Monitoring Tool" width="100%">
 
 <br>
 
